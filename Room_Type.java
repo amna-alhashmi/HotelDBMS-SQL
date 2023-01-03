@@ -3,8 +3,10 @@ package SqlText;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -43,6 +45,57 @@ public class Room_Type {
 			}
 			
 		}
+	
+	public static void readFromTable(){
+		String url = "jdbc:mysql://localhost:3306/HotelDBMS";
+		String username = "root";
+		String password = "root";
+		
+			Scanner sa=new Scanner(System.in);
+			System.out.println("Enter how many users you have to print:");
+			int user=sa.nextInt();
+			
+			
+		   
+			String sql = "SELECT * FROM hotels";
+			//Connection, Driver, DriverRegister lines will be exactly same
+			
+			
+		
+			 java.sql.Connection conn = null;
+			 try {
+					Driver driver = (Driver) Class.forName("com.mysql.jdbc.Driver").newInstance();
+					DriverManager.registerDriver(driver);
+					conn = DriverManager.getConnection(url, username, password);
+					java.sql.Statement st = conn.createStatement();
+					ResultSet resultSet = st.executeQuery(sql);
+					int count=0;
+					while(resultSet.next()&& count<user){
+						Integer id = resultSet.getInt("id");
+						String hotel_name = resultSet.getString("room_type_name");
+						Date created_date = resultSet.getDate("created_date");
+						Date updated_date = resultSet.getDate("updated_date");
+						Boolean is_Active = resultSet.getBoolean("is_Active");
+						System.out.println(id+" "+hotel_name+" "+created_date+" "+updated_date+" "+is_Active);
+						count++;
+						 }
+				
+					conn.close();
+				}
+				catch (Exception ex) {
+					System.err.println(ex);
+				}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void insertIntoTable1() {
 		try {
 		    String url = "jdbc:mysql://localhost:3306/HotelDBMS";

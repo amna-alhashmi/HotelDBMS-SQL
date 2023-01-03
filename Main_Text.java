@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main_Text {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Scanner sa = new Scanner(System.in);
 		boolean round=true;
 while(round) {

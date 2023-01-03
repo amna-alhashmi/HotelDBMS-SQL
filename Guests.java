@@ -78,7 +78,7 @@ public class Guests {
 		
 		
 		for(int i=1;i<=1;i++) {
-			   String sql = "INSERT INTO Rooms VALUES ("+ i+numberToAdd +",'"+ (guest_name+i)+"','"+guest_phone+
+			   String sql = "INSERT INTO Guest VALUES ("+ i+numberToAdd +",'"+ (guest_name+i)+"','"+guest_phone+
 					   "','"+guest_accompanying_members+"','"+guest_payment_amount+"','"+
 					   room_id+"','"+hotel_id+"','"+created_date+
 					   "','"+updated_date+"',"+ is_Active+")";
