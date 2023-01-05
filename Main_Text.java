@@ -55,6 +55,10 @@ while(round) {
 			Hotels hotels3=new Hotels();
 			hotels3.readFromTable();
 			break;
+			
+		case 5:
+			Hotels hotels4=new Hotels();
+			hotels4.makeIsActiveFalseById();
 		}
 	}round=false;
 

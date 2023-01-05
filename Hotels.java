@@ -40,19 +40,13 @@ public class Hotels {
 		
 	}
 		
-		
-	//public static getById
-	    	
-
-	
-		
 		public static void readFromTable(){
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 			String username = "root";
 			String password = "root";
 			
 				Scanner sa=new Scanner(System.in);
-				System.out.println("Enter how many users you have to print:");
+				System.out.println("Enter how many users you want to print:");
 				int user=sa.nextInt();
 				
 				
@@ -64,7 +58,7 @@ public class Hotels {
 			
 				 java.sql.Connection conn = null;
 				 try {
-						Driver driver = (Driver) Class.forName("com.mysql.jdbc.Driver").newInstance();
+						Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 						DriverManager.registerDriver(driver);
 						conn = DriverManager.getConnection(url, username, password);
 						java.sql.Statement st = conn.createStatement();
@@ -88,150 +82,110 @@ public class Hotels {
 					}
 		
 		}
+		public static void getById() {
+			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
+			String username = "root";
+			String password = "root";
+			Scanner scanner = new Scanner(System.in);
+			Connection con = null;
+
+			try {
+
+				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				DriverManager.registerDriver(driver);
+				con = DriverManager.getConnection(url, username,password);
+				Statement st = con.createStatement();
+				
+				Scanner sa = new Scanner(System.in);
+				System.out.println("Pls Enter the id:");
+				int userin = sa.nextInt();
+				String sql = "SELECT * FROM Hotels WHERE id='" + userin + "'";
+				ResultSet result = st.executeQuery(sql);
+
+				while (result.next()) {
+
+					int id1 = result.getInt("id");
+					String name = result.getString("hotel_name");
+					String location = result.getString("hotel_location");
+					Date created = result.getDate("created_date");
+					Date update = result.getDate("updated_date");
+					boolean Active = result.getBoolean("is_Active");
+					System.out.println(id1 + " " + name + " " + location + " " + created + " " + update + " " + Active);
+
+				}
+			}
+
+			catch (Exception ex) {
+
+				System.err.println(ex);
+
+			}
+
+		}
+		
+		public static void updateById() {
+
+			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
+			String username = "root";
+			String password = "root";
+			Connection con = null;
+
+			try {
+
+				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				DriverManager.registerDriver(driver);
+				con = DriverManager.getConnection(url, username,password);
+				Statement st = con.createStatement();
+				
+				Scanner sa = new Scanner(System.in);
+				System.out.println("PLS Enter any id to Update hotel data :");
+				int user_input = sa.nextInt();
+				System.out.println("Please Enter the new Hotel name:");
+				String hotel_name = sa.next();
+				System.out.println("Please Enter the new Hotel location:");
+				String hotel_locatin = sa.next();
+				String sql = "UPDATE Hotels SET hotel_name='" + hotel_name + "',hotel_location='" + hotel_locatin
+						+ "' WHERE id='" + user_input + "'";
+
+				int result = st.executeUpdate(sql);
+
+			}
+
+			catch (Exception ex) {
+
+				System.err.println(ex);
+
+			}
+
+		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		String url = "jdbc:mysql://localhost:3306/HotelDBMS";
-//		String username = "root";
-//		String password = "root";
-//		
-//		System.out.println("pls enter how many rows you want to show:");
-//		Scanner sa = new Scanner(System.in); // System.in is a standard input stream
-//		int id1 = sa.nextInt();
-//		
-//		//for(int i=1;i<10;i++) {
-//		String sqlDB = " SELECT * FROM Hotels";
-//		Connection conn = null;
-//		
-//		
-//		try {
-//			Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-//			Connection conn1 = DriverManager.getConnection(url, username, password);
-//			Statement st = conn1.createStatement();
-//			ResultSet m = st.executeQuery(sqlDB);
-//			if (m.next()) {
-//				do {
-//					System.out.println("id : " + m.getInt(1));
-//					System.out.println("hotel_name :" + m.getString(2));
-//					System.out.println("hotel_location :" + m.getString(3));
-//					System.out.println("created_date :" + m.getString(4));
-//					System.out.println("updated_date :" + m.getString(5));
-//					if (m.getInt(6) == 1) {
-//						System.out.println("is_Active : true");
-//					} else {
-//						System.out.println("is_Active : false");
-//					}
-//					System.out.println("*********************************");
-//				} while (m.next());
-//			} else {
-//				System.out.println("No such user id is already registered");
-//			}
-//		
-//			conn1.close();
-//		}
-//		 catch (Exception ex) {
-//			System.err.println(ex);
-//		}
-		
-	//}
-		
-//		try {
-//		String url = "jdbc:mysql://localhost:3306/HotelDBMS";
-//		String user = "root";
-//		String pass = "root";
-//		
-//		Scanner sa = new Scanner(System.in);
-//		System.out.println("How many users you want?");
-//		int input=sa.nextInt();
-//		
-//		for(int i=1;i<=10;i++) {
-//			String sqlDB = "SELECT * FROM Hotels";			   
-//				Connection conn = null;
-//					Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-//					DriverManager.registerDriver(driver);
-//					conn = DriverManager.getConnection(url, user, pass);
-//					Statement st = conn.createStatement();
-//					int m = st.executeUpdate(sqlDB);
-//					ResultSet resultSet = st.executeQuery(sqlDB);
-//					while(resultSet.next()){
-//						Integer id = resultSet.getInt("id");
-//						String hotelName = resultSet.getString("hotel_name");
-//						String hotelLocation=resultSet.getString("hotel_location");
-//						String createDate=resultSet.getString("created_date");
-//						String updatedDate=resultSet.getString("updated_date");
-//						
-//						
-//						
-//					if (m >= 1) {
-//						System.out.println("Created table in given database...");
-//						
-//					} else {
-//						System.out.println(" table already Created in given database...");
-//					}
-//					conn.close();
-//		}
-//				} 
-//		}catch (Exception ex) {
-//					System.err.println(ex);
-//		}
-		
-	
-		
-		
-		
-		
-		
-		
-		
-//		for(int i=1;i<10;i++) {
-//			
-//			String sql = "SELECT * FROM hotels";
-//			Connection conn = null;
-//			Statement stmt = null;
-//			
-//				Class.forName("com.mysql.cj.jdbc.Driver");
-//				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDBMS", "root", "root");
-//				stmt = conn.createStatement();
-//				ResultSet rs = stmt.executeQuery(query);
-//				while (rs.next()) {
-//					Integer id = rs.getInt(1);
-//					String hotel_name = rs.getString(2);
-//					String hotel_location = rs.getString(3);
-//					Date created_date = rs.getDate(4);
-//					Date updated_date=rs.getDate(5);
-//					String is_Active=rs.getString(6);
-//					
-//					System.out.println("hotel name" + hotel_name);
-//					System.out.println("hotel location:" + hotel_location);
-//					System.out.println("created date:" + created_date);
-//					System.out.println("updated date:" + updated_date);
-//					System.out.println("is_Active"+is_Active);
-//				}
-//				rs.close();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			} finally {
-//				try {
-//					stmt.close();
-//					conn.close();
-//				} catch (Exception e) {
-//					
-//				}
-//					}
-//				}
-	
+		public static void makeIsActiveFalseById() {
+			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
+			String username = "root";
+			String password = "root";
+			Connection con = null;
+			
+			try {
+
+				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				DriverManager.registerDriver(driver);
+				con = DriverManager.getConnection(url, username,password);
+				Statement st = con.createStatement();
+			
+				
+				String sql = "UPDATE Hotels SET is_Active=false LIMIT 10 ;";
+
+				int result = st.executeUpdate(sql);
+
+			}
+
+			catch (Exception ex) {
+
+				System.err.println(ex);
+
+			}	
+		}
 			public static void insertIntoTable () {
 				try {
 			    String url = "jdbc:mysql://localhost:3306/HotelDBMS";
@@ -323,30 +277,6 @@ public class Hotels {
 							}
 			}
 }		   
-					   
-		   
-					   
-					   
-//					   String driverName = "com.mysql.cj.jdbc.Driver";
-//					   Connection con = null;
-//					   Class.forName(driverName).newInstance();
-//					   con = DriverManager.getConnection(url, userName, password);
-//					   Statement st = con.createStatement();
-//					   int m=st.executeUpdate(sql);
-//					   if (m >=  1) {
-//			                System.out.println("inserted successfully : ");
-//					   }else {
-//			                System.out.println("insertion failed");
-//					   }
-//			            
-//			            con.close();
-//			        }
-//				
-//			        // Catch block to handle exceptions
-//				}catch (Exception ex) {
-//			            // Display message when exceptions occurs
-//			            System.err.println(ex);
-//			        }
 				
 			    
 
