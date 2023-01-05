@@ -53,12 +53,18 @@ while(round) {
 			
 		case 4:
 			Hotels hotels3=new Hotels();
-			hotels3.readFromTable();
+			hotels3.readFromTable(10);
 			break;
 			
 		case 5:
 			Hotels hotels4=new Hotels();
 			hotels4.makeIsActiveFalseById();
+			break;
+		case 6:
+			System.out.println("Enter how many hotel information you want?");
+			int information=sa.nextInt();
+			Hotels hotels5=new Hotels();
+			hotels5.readFromTable(information);
 		}
 	}round=false;
 

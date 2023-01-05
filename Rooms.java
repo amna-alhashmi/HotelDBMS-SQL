@@ -103,12 +103,12 @@ public class Rooms {
 			while (result.next()) {
 
 				int id1 = result.getInt("id");
-				String name = result.getString("hotel_name");
-				String location = result.getString("hotel_location");
+				String room_type_id = result.getString("room_type_id");
+				String hotel_id = result.getString("hotel_id");
 				Date created = result.getDate("created_date");
 				Date update = result.getDate("updated_date");
 				boolean Active = result.getBoolean("is_Active");
-				System.out.println(id1 + " " + name + " " + location + " " + created + " " + update + " " + Active);
+				System.out.println(id1 + " " + room_type_id + " " + hotel_id + " " + created + " " + update + " " + Active);
 
 			}
 		}
@@ -135,13 +135,13 @@ public class Rooms {
 			Statement st = con.createStatement();
 			
 			Scanner sa = new Scanner(System.in);
-			System.out.println("PLS Enter any id to Update hotel data :");
+			System.out.println("PLS Enter any id to Update  :");
 			int user_input = sa.nextInt();
-			System.out.println("Please Enter the new Hotel name:");
-			String hotel_name = sa.next();
-			System.out.println("Please Enter the new Hotel location:");
-			String hotel_locatin = sa.next();
-			String sql = "UPDATE Hotels SET hotel_name='" + hotel_name + "',hotel_location='" + hotel_locatin
+			System.out.println("Please Enter the new room_type_id:");
+			String room_type_id = sa.next();
+			System.out.println("Please Enter the new hotel_id:");
+			String hotel_id = sa.next();
+			String sql = "UPDATE Hotels SET hotel_name='" + hotel_id + "',hotel_location='" + hotel_id
 					+ "' WHERE id='" + user_input + "'";
 
 			ResultSet result = st.executeQuery(sql);
@@ -155,6 +155,35 @@ public class Rooms {
 		}
 
 	}
+public static void deleteById() {
+		
+		String url = "jdbc:mysql://localhost:3306/HotelDBMS";
+		String username = "root";
+		String password = "root";
+		Connection con = null;
+		try {
+
+			Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, username,password);
+			Statement st = con.createStatement();
+			
+			Scanner sa = new Scanner(System.in);
+			System.out.println("Please Enter the id you want to delet it:");
+			String enter = sa.next();
+			String sql = "delete from users where id ='"+ enter+"'";
+			int result = st.executeUpdate(sql);
+
+		}
+
+		catch (Exception ex) {
+
+			System.err.println(ex);
+
+		}
+		
+		
+	}
 	public static void makeIsActiveFalseById() {
 		String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 		String username = "root";
@@ -163,22 +192,15 @@ public class Rooms {
 		
 		try {
 
-			Driver driver = (Driver) Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			DriverManager.registerDriver(driver);
 			con = DriverManager.getConnection(url, username,password);
 			Statement st = con.createStatement();
 		
-			Scanner sa = new Scanner(System.in);
-			System.out.println("PLS Enter any id to Update hotel data :");
-			int user_input = sa.nextInt();
-			System.out.println("Please Enter the new Hotel name:");
-			String hotel_name = sa.next();
-			System.out.println("Please Enter the new Hotel location:");
-			String hotel_location = sa.next();
-			String sql = "UPDATE Hotels SET hotel_name='" + hotel_name + "',hotel_location='" + hotel_location
-					+ "' WHERE id='" + user_input + "'";
+			
+			String sql = "UPDATE Hotels SET is_Active=false LIMIT 10 ;";
 
-			ResultSet result = st.executeQuery(sql);
+			int result = st.executeUpdate(sql);
 
 		}
 

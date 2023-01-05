@@ -40,17 +40,12 @@ public class Hotels {
 		
 	}
 		
-		public static void readFromTable(){
+		public static void readFromTable(int number){
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 			String username = "root";
 			String password = "root";
 			
-				Scanner sa=new Scanner(System.in);
-				System.out.println("Enter how many users you want to print:");
-				int user=sa.nextInt();
 				
-				
-			   
 				String sql = "SELECT * FROM hotels";
 				//Connection, Driver, DriverRegister lines will be exactly same
 				
@@ -63,8 +58,8 @@ public class Hotels {
 						conn = DriverManager.getConnection(url, username, password);
 						java.sql.Statement st = conn.createStatement();
 						ResultSet resultSet = st.executeQuery(sql);
-						int count=0;
-						while(resultSet.next()&& count<user){
+						int count=1;
+						while(resultSet.next()&& number>=count){
 							Integer id = resultSet.getInt("id");
 							String hotel_name = resultSet.getString("hotel_name");
 							String hotel_location = resultSet.getString("hotel_location");
@@ -80,8 +75,10 @@ public class Hotels {
 					catch (Exception ex) {
 						System.err.println(ex);
 					}
-		
+				
 		}
+		
+		
 		public static void getById() {
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 			String username = "root";
@@ -158,7 +155,35 @@ public class Hotels {
 			}
 
 		}
-		
+		public static void deleteById() {
+			
+			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
+			String username = "root";
+			String password = "root";
+			Connection con = null;
+			try {
+
+				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				DriverManager.registerDriver(driver);
+				con = DriverManager.getConnection(url, username,password);
+				Statement st = con.createStatement();
+				
+				Scanner sa = new Scanner(System.in);
+				System.out.println("Please Enter the id you want to delet it:");
+				String enter = sa.next();
+				String sql = "delete from users where id ='"+ enter+"'";
+				int result = st.executeUpdate(sql);
+
+			}
+
+			catch (Exception ex) {
+
+				System.err.println(ex);
+
+			}
+			
+			
+		}
 		
 		public static void makeIsActiveFalseById() {
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
