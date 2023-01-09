@@ -18,6 +18,7 @@ public class Main_Text {
 			System.out.println("6.Print hotel information by user input");
 			System.out.println("7.Insert Room_type table");
 			System.out.println("8.Insert all tables");
+			System.out.println("9.Insert More than 100 hotels, 20 employees, 1000 guests");
 
 			String a = sa.next();
 			int option = Integer.parseInt(a);
@@ -77,18 +78,43 @@ public class Main_Text {
 				break;
 				
 			case 8:
-				
-//				Employee_Type employee_type=new Employee_Type();
-//				employee_type.insertIntoTable();
+				System.out.println("enter how many number of rows you want to be inserted?");
+				int type1=sa.nextInt();
+				Employee_Type employee_type=new Employee_Type();
+				employee_type.insertIntoTable(type1);
 				
 				Rooms rooms1 =new Rooms();
 				System.out.println("enter how many user you want to insert?");
 				int number3 = sa.nextInt();
 				rooms1.insertIntoTable1(number3);
 				
+				System.out.println("enter how many user you want to insert?");
+				int number5 = sa.nextInt();
+				Guests guests1=new Guests();
+				guests1.insertIntoTable1(number5);
+				
+				System.out.println("enter how many user you want to insert?");
+				int number6 = sa.nextInt();
+				Employees employee=new Employees();
+				employee.insertIntoTable(number6);
+				
+				break;
+			case 9:
+				
+				Hotels hotels6 = new Hotels();
+				hotels6.readFromTable(100);
+				
+				Employees employee1=new Employees();
+				employee1.insertIntoTable(20);
+				
+				Guests guests3=new Guests();
+				guests3.insertIntoTable1(1000);
 				
 				
-						break;
+				break;
+				
+
+						
 					
 					
 

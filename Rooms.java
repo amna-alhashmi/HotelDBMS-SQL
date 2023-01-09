@@ -234,10 +234,10 @@ public class Rooms {
 				System.out.println("enter hotel name you want?");
 				String number4 = sa.next();
 				// Integer id=1;
-				String sql1 ="insert into Rooms (Rooms, id) select Rooms, id from room_type where id ="+number3+","+"select Rooms, id from hotel_name where id ="+number4+")";
+//				String sql1 ="insert into Rooms (Rooms, id) select Rooms, id from room_type where id ="+number3+","+"select Rooms, id from hotel_name where id ="+number4+")";
 //				String hotel_id = "SELECT id FROM Hotels WHERE hotel_name="+number4;
-//				String sql = "INSERT INTO Rooms VALUES (" + i + numberToAdd + "," + "SELECT id FROM room_type WHERE room_type_name="+number3  + ","
-//						+ "SELECT id FROM hotels WHERE hotel_name="+number4 + ",'" + created_date + "','" + updated_date + "'," + is_Active + ")";
+				String sql = "INSERT INTO Rooms VALUES (" + i + numberToAdd  + "SELECT id FROM room_type WHERE room_type_name="+number3
+						+ "SELECT id FROM hotels WHERE hotel_name="+number4 + ",'" + created_date + "','" + updated_date + "'," + is_Active + ")";
 
 				Connection conn = null;
 
@@ -245,7 +245,7 @@ public class Rooms {
 				DriverManager.registerDriver(driver);
 				conn = DriverManager.getConnection(url, user, pass);
 				Statement st = conn.createStatement();
-				int m = st.executeUpdate(sql1);
+				int m = st.executeUpdate(sql);
 				if (m >= 1) {
 					System.out.println("Created table in given database...");
 

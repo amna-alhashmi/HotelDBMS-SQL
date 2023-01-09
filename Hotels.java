@@ -294,4 +294,54 @@ public class Hotels {
 			System.err.println(ex);
 		}
 	}
+	public static void insertIntoTable1(int num) {
+		try {
+			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
+			String user = "root";
+			String pass = "root";
+
+			Scanner sa = new Scanner(System.in);
+			
+
+			// Integer id=1;
+			String hotel_name = "Amna";
+			String hotel_location = "Mus";
+			String created_date = "2023-01-01";
+			String updated_date = "2022-12-6";
+			boolean is_Active = true;
+
+			Random rn = new Random();
+			Integer numberToAdd = rn.nextInt(100);
+
+			for (int i = 1; i >= num; i++) {
+				String sql = "INSERT INTO Hotels VALUES (" + i + numberToAdd + ",'" + (hotel_name + i) + "','"
+						+ hotel_location + "','" + created_date + "','" + updated_date + "'," + is_Active + ")";
+
+				Connection conn = null;
+
+				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				DriverManager.registerDriver(driver);
+				conn = DriverManager.getConnection(url, user, pass);
+				Statement st = conn.createStatement();
+				int m = st.executeUpdate(sql);
+				if (m >= 1) {
+					System.out.println("Created table in given database...");
+
+				} else {
+					System.out.println(" table already Created in given database...");
+				}
+				conn.close();
+			}
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

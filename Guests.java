@@ -231,23 +231,21 @@ public class Guests {
 		}
 	}
 
-	public static void insertIntoTable1() {
+	public static void insertIntoTable1(int num) {
 		try {
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 			String user = "root";
 			String pass = "root";
 
 			Scanner sa = new Scanner(System.in);
-			System.out.println("enter how many number of rows you want to be inserted?");
-			int number3 = sa.nextInt();
-
+			
 			// Integer id=1;
 			String guest_name = "Amna";
 			String guest_phone = "98765211";
 			Integer guest_accompanying_members = 1223;
 			Integer guest_payment_amount = 123;
-			Integer room_id = 11;
-			Integer hotel_id = 12;
+			//Integer room_id = "SELECT id FROM Rooms INNER JOIN Room_Type ON Room.Room_Type_id =Room_Type_id WHERE Room_Type.Room_Typed_name"+number3;
+			//Integer hotel_id = "SELECT id from Hotels WHERE Hotels_name="+number4;
 			String created_date = "2023-01-01";
 			String updated_date = "2022-12-6";
 			boolean is_Active = true;
@@ -255,10 +253,15 @@ public class Guests {
 			Random rn = new Random();
 			Integer numberToAdd = rn.nextInt(100);
 
-			for (int i = 1; i <= 1; i++) {
+			for (int i = 1; i >= num; i++) {
+				System.out.println("enter room type name you want?");
+				int number3 = sa.nextInt();
+				System.out.println("enter hotel name you want?");
+				String number4 = sa.next();
+				
 				String sql = "INSERT INTO guests VALUES (" + i + numberToAdd + ",'" + (guest_name + i) + "','"
-						+ guest_phone + "','" + guest_accompanying_members + "','" + guest_payment_amount + "','"
-						+ room_id + "','" + hotel_id + "','" + created_date + "','" + updated_date + "'," + is_Active
+						+ guest_phone + "','" + guest_accompanying_members + "','" + guest_payment_amount + ","
+						+ "SELECT id FROM Rooms INNER JOIN Room_Type ON Room.Room_Type_id =Room_Type_id WHERE Room_Type.Room_Typed_name"+number3 + "," + "SELECT id from Hotels WHERE Hotels_name="+number4 + "','" + created_date + "','" + updated_date + "'," + is_Active
 						+ ")";
 
 				Connection conn = null;

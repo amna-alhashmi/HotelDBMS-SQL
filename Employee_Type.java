@@ -208,18 +208,17 @@ public class Employee_Type {
 		}
 	}
 
-	public static void insertIntoTable() {
+	public static void insertIntoTable(int num) {
 		try {
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 			String user = "root";
 			String pass = "root";
 
 			Scanner sa = new Scanner(System.in);
-			System.out.println("enter how many number of rows you want to be inserted?");
-			int number3 = sa.nextInt();
+			
 
 			// Integer id=1;
-			String employee_type_name = "Amna";
+//			String employee_type_name =sa.next();
 			String created_date = "2023-01-01";
 			String updated_date = "2022-12-6";
 			boolean is_Active = true;
@@ -227,8 +226,11 @@ public class Employee_Type {
 			Random rn = new Random();
 			Integer numberToAdd = rn.nextInt(100);
 
-			for (int i = 1; i <= number3; i++) {
-				String sql = "INSERT INTO Employee_Type VALUES (" + i + numberToAdd + ",'" + (employee_type_name + i)
+			for (int i = 1; i <= num; i++) {
+				
+				System.out.println("Enter Room Type Name");
+				String employee_type_name=sa.next();
+				String sql = "INSERT INTO Employee_Type VALUES (" + i + numberToAdd + ",'" + employee_type_name 
 						+ "','" + created_date + "','" + updated_date + "'," + is_Active + ")";
 
 				Connection conn = null;
