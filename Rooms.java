@@ -213,12 +213,15 @@ public class Rooms {
 		}
 	}
 
-	public static void insertIntoTable1(int num) {
+	public static void insertIntoTable1() {
 		try {
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 			String user = "root";
 			String pass = "root";
-
+			
+			Scanner sa=new Scanner(System.in);
+			System.out.println("How many Rooms you wants:");
+			int ROOM2=sa.nextInt();
 			
 			String created_date = "2023-01-01";
 			String updated_date = "2022-12-6";
@@ -227,17 +230,18 @@ public class Rooms {
 			Random rn = new Random();
 			Integer numberToAdd = rn.nextInt(100);
 
-			for (int i = 1; i <=num; i++) {
-				Scanner sa = new Scanner(System.in);
-				System.out.println("enter room type you want?");
-				String number3 = sa.next();
-				System.out.println("enter hotel name you want?");
-				String number4 = sa.next();
+			for (int i = 1; i <=ROOM2; i++) {
+//				Scanner sa = new Scanner(System.in);
+//				System.out.println("enter room type you want?");
+//				String number3 = sa.next();
+//				System.out.println("enter hotel name you want?");
+//				String number4 = sa.next();
 				// Integer id=1;
 //				String sql1 ="insert into Rooms (Rooms, id) select Rooms, id from room_type where id ="+number3+","+"select Rooms, id from hotel_name where id ="+number4+")";
 //				String hotel_id = "SELECT id FROM Hotels WHERE hotel_name="+number4;
-				String sql = "INSERT INTO Rooms VALUES (" + i + numberToAdd  + "SELECT id FROM room_type WHERE room_type_name="+number3
-						+ "SELECT id FROM hotels WHERE hotel_name="+number4 + ",'" + created_date + "','" + updated_date + "'," + is_Active + ")";
+				String sql1 = "INSERT INTO Rooms VALUES (" + i + ","+3+",'" +280+"','"+created_date+"','"+updated_date+"',"+is_Active+")";
+				//String sql = "INSERT INTO Rooms VALUES (" + i + numberToAdd  + "SELECT id FROM room_type WHERE room_type_name="+number3
+						//+ "SELECT id FROM hotels WHERE hotel_name="+number4 + ",'" + created_date + "','" + updated_date + "'," + is_Active + ")";
 
 				Connection conn = null;
 
@@ -245,7 +249,7 @@ public class Rooms {
 				DriverManager.registerDriver(driver);
 				conn = DriverManager.getConnection(url, user, pass);
 				Statement st = conn.createStatement();
-				int m = st.executeUpdate(sql);
+				int m = st.executeUpdate(sql1);
 				if (m >= 1) {
 					System.out.println("Created table in given database...");
 

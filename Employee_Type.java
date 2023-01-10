@@ -219,6 +219,7 @@ public class Employee_Type {
 
 			// Integer id=1;
 //			String employee_type_name =sa.next();
+			String employee_type_name="MANAGER";
 			String created_date = "2023-01-01";
 			String updated_date = "2022-12-6";
 			boolean is_Active = true;
@@ -228,10 +229,10 @@ public class Employee_Type {
 
 			for (int i = 1; i <= num; i++) {
 				
-				System.out.println("Enter Room Type Name");
-				String employee_type_name=sa.next();
-				String sql = "INSERT INTO Employee_Type VALUES (" + i + numberToAdd + ",'" + employee_type_name 
-						+ "','" + created_date + "','" + updated_date + "'," + is_Active + ")";
+//				System.out.println("Enter Room Type Name");
+				
+				String sql = "INSERT INTO Employee_Type VALUES (" + i + numberToAdd + ",'"  + employee_type_name + "','"
+						+ created_date + "','" + updated_date + "'," + is_Active + ")";
 
 				Connection conn = null;
 

@@ -231,16 +231,19 @@ public class Guests {
 		}
 	}
 
-	public static void insertIntoTable1(int num) {
+	public static void insertIntoTable1() {
 		try {
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 			String user = "root";
 			String pass = "root";
 
 			Scanner sa = new Scanner(System.in);
-			
+			System.out.println("enter how many user you want to insert?");
+			int number5 = sa.nextInt();
+			System.out.println("Enter guest name you want:");
+			String guest_name = sa.next();
 			// Integer id=1;
-			String guest_name = "Amna";
+//			String guest_name = "Amna";
 			String guest_phone = "98765211";
 			Integer guest_accompanying_members = 1223;
 			Integer guest_payment_amount = 123;
@@ -253,16 +256,14 @@ public class Guests {
 			Random rn = new Random();
 			Integer numberToAdd = rn.nextInt(100);
 
-			for (int i = 1; i >= num; i++) {
-				System.out.println("enter room type name you want?");
-				int number3 = sa.nextInt();
-				System.out.println("enter hotel name you want?");
-				String number4 = sa.next();
+			for (int i = 0; i<=number5; i++) {
+//				System.out.println("enter room type name you want?");
+//				int number3 = sa.nextInt();
+//				System.out.println("enter hotel name you want?");
+//				String number4 = sa.next();
 				
-				String sql = "INSERT INTO guests VALUES (" + i + numberToAdd + ",'" + (guest_name + i) + "','"
-						+ guest_phone + "','" + guest_accompanying_members + "','" + guest_payment_amount + ","
-						+ "SELECT id FROM Rooms INNER JOIN Room_Type ON Room.Room_Type_id =Room_Type_id WHERE Room_Type.Room_Typed_name"+number3 + "," + "SELECT id from Hotels WHERE Hotels_name="+number4 + "','" + created_date + "','" + updated_date + "'," + is_Active
-						+ ")";
+				String sql = "INSERT INTO Guests VALUES (" + i + numberToAdd + ",'" + guest_name + "','"
+						+ guest_phone + "',"+guest_accompanying_members +","+guest_payment_amount+","+3+ ","+280+",'"+ created_date + "','" + updated_date + "'," + is_Active + ")";
 
 				Connection conn = null;
 

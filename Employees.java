@@ -18,7 +18,7 @@ public class Employees {
 
 		String sqlDB = "CREATE TABLE Employees " + "(id INTEGER not NULL, " + "employee_type_id INTEGER  ,"
 				+ "FOREIGN KEY (employee_type_id) REFERENCES Employee_Type(id) ON DELETE CASCADE ,"
-				+ "room_id  INTEGER  ," + "FOREIGN KEY (room_id) REFERENCES Hotels(id) ON DELETE CASCADE ,"
+				+ "room_id  INTEGER  ," + "FOREIGN KEY (room_id) REFERENCES Rooms(id) ON DELETE CASCADE ,"
 				+ " created_date Date not NULL, " + " updated_date Date , " + " is_Active  Boolean  not NULL, "
 				+ " PRIMARY KEY ( id ))";
 
@@ -211,17 +211,17 @@ public class Employees {
 		}
 	}
 
-	public static void insertIntoTable() {
+	public static void insertIntoTable1(int num) {
 		try {
 			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
 			String user = "root";
 			String pass = "root";
 
 			Scanner sa = new Scanner(System.in);
-			System.out.println("enter Employee type name?");
-			int number3 = sa.nextInt();
-			System.out.println("enter room type name?");
-			int number4 = sa.nextInt();
+//			System.out.println("enter Employee type name?");
+//			int number3 = sa.nextInt();
+//			System.out.println("enter room type name?");
+//			int number4 = sa.nextInt();
 			// Integer id=1;
 //			Integer employee_type_id = ;
 //			Integer room_id = 
@@ -232,9 +232,9 @@ public class Employees {
 			Random rn = new Random();
 			Integer numberToAdd = rn.nextInt(100);
 
-			for (int i = 1; i <= number3; i++) {
-				String sql = "INSERT INTO Employees VALUES (" + i + numberToAdd + ",'" + "SELECT id FROM Employee_Type WHERE Employee_Type_name ="+number3 + "','"
-						+ "SELECT id from Rooms INNER JOIN Room_Type ON Room.Room_Typed_id=Room_Typed_id WHERE Room_Type.Room_Typed_name"+number4 + "','" + created_date + "','" + updated_date + "'," + is_Active + ")";
+			for (int i = 1; i <= num; i++) {
+				String sql = "INSERT INTO Employees VALUES (" + i + ","  + 26  +","+3+",'"
+						 + created_date + "','" + updated_date + "'," + is_Active + ")";
 
 				Connection conn = null;
 
@@ -257,50 +257,50 @@ public class Employees {
 
 	}
 	
-	public static void insertIntoTable(int a) {
-		try {
-			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
-			String user = "root";
-			String pass = "root";
-
-			Scanner sa = new Scanner(System.in);
-			System.out.println("enter Employee type name?");
-			int number3 = sa.nextInt();
-			System.out.println("enter room type name?");
-			int number4 = sa.nextInt();
-			// Integer id=1;
-//			Integer employee_type_id = ;
-//			Integer room_id = 
-			String created_date = "2023-01-01";
-			String updated_date = "2022-12-6";
-			boolean is_Active = true;
-
-			Random rn = new Random();
-			Integer numberToAdd = rn.nextInt(100);
-
-			for (int i = 1; i >= a; i++) {
-				String sql = "INSERT INTO Employees VALUES (" + i + numberToAdd + ",'" + "SELECT id FROM Employee_Type WHERE Employee_Type_name ="+number3 + "','"
-						+ "SELECT id from Rooms INNER JOIN Room_Type ON Room.Room_Typed_id=Room_Typed_id WHERE Room_Type.Room_Typed_name"+number4 + "','" + created_date + "','" + updated_date + "'," + is_Active + ")";
-
-				Connection conn = null;
-
-				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-				DriverManager.registerDriver(driver);
-				conn = DriverManager.getConnection(url, user, pass);
-				Statement st = conn.createStatement();
-				int m = st.executeUpdate(sql);
-				if (m >= 1) {
-					System.out.println("Created table in given database...");
-
-				} else {
-					System.out.println(" table already Created in given database...");
-				}
-				conn.close();
-			}
-		} catch (Exception ex) {
-			System.err.println(ex);
-		}
-
-	}
+//	public static void insertIntoTable(int a) {
+//		try {
+//			String url = "jdbc:mysql://localhost:3306/HotelDBMS";
+//			String user = "root";
+//			String pass = "root";
+//
+//			Scanner sa = new Scanner(System.in);
+//			System.out.println("enter Employee type name?");
+//			int number3 = sa.nextInt();
+//			System.out.println("enter room type name?");
+//			int number4 = sa.nextInt();
+//			// Integer id=1;
+////			Integer employee_type_id = ;
+////			Integer room_id = 
+//			String created_date = "2023-01-01";
+//			String updated_date = "2022-12-6";
+//			boolean is_Active = true;
+//
+//			Random rn = new Random();
+//			Integer numberToAdd = rn.nextInt(100);
+//
+//			for (int i = 1; i >= a; i++) {
+//				String sql = "INSERT INTO Employees VALUES (" + i + numberToAdd + ",'" + "SELECT id FROM Employee_Type WHERE Employee_Type_name ="+number3 + "','"
+//						+ "SELECT id from Rooms INNER JOIN Room_Type ON Room.Room_Typed_id=Room_Typed_id WHERE Room_Type.Room_Typed_name"+number4 + "','" + created_date + "','" + updated_date + "'," + is_Active + ")";
+//
+//				Connection conn = null;
+//
+//				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+//				DriverManager.registerDriver(driver);
+//				conn = DriverManager.getConnection(url, user, pass);
+//				Statement st = conn.createStatement();
+//				int m = st.executeUpdate(sql);
+//				if (m >= 1) {
+//					System.out.println("Created table in given database...");
+//
+//				} else {
+//					System.out.println(" table already Created in given database...");
+//				}
+//				conn.close();
+//			}
+//		} catch (Exception ex) {
+//			System.err.println(ex);
+//		}
+//
+//	}
 
 }
